@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:probuidemos="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="de.lmu.ifi.medien.probuidemos.developer_workshop.tasks.taskC.WorkshopActivityTaskC">
+
+    <view
+        android:id="@+id/probUIContainer"
+        class="de.lmu.ifi.medien.probui.gui.ProbUIContainerRelative"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clipChildren="false">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clipChildren="false"
+            android:orientation="vertical">
+
+            <view
+                android:id="@+id/menu_button"
+                class="de.lmu.ifi.medien.probuidemos.workshop.tasks.taskC.MyProbUICheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Item 1"
+                probuidemos:direction="0" />
+
+            <view
+                android:id="@+id/menu_button2"
+                class="de.lmu.ifi.medien.probuidemos.workshop.tasks.taskC.MyProbUICheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Item 2"
+                probuidemos:direction="0" />
+
+            <view
+                android:id="@+id/menu_button3"
+                class="de.lmu.ifi.medien.probuidemos.workshop.tasks.taskC.MyProbUICheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Item 3"
+                probuidemos:direction="0" />
+
+            <view
+                android:id="@+id/menu_button4"
+                class="de.lmu.ifi.medien.probuidemos.workshop.tasks.taskC.MyProbUICheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Item 4"
+                probuidemos:direction="0" />
+
+            <view
+                android:id="@+id/menu_button5"
+                class="de.lmu.ifi.medien.probuidemos.workshop.tasks.taskC.MyProbUICheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Item 5"
+                probuidemos:direction="0" />
+
+
+        </LinearLayout>
+    </view>
+</RelativeLayout>

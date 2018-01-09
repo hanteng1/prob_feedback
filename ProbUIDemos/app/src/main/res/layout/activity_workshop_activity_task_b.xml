@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="de.lmu.ifi.medien.probuidemos.developer_workshop.tasks.taskB.WorkshopActivityTaskB"
+    android:background="@android:color/background_dark">
+
+
+    <view
+        android:id="@+id/probUIContainer"
+        class="de.lmu.ifi.medien.probui.gui.ProbUIContainerRelative"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clipChildren="false">
+
+
+        <view
+            android:id="@+id/imageView"
+            class="de.lmu.ifi.medien.probuidemos.workshop.tasks.taskB.MyProbUIImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:text="B" />
+
+    </view>
+
+</RelativeLayout>

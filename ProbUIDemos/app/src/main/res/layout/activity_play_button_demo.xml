@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="de.lmu.ifi.medien.probuidemos.demos.PlayButtonDemo">
+
+    <view
+        android:id="@+id/probUIContainer"
+        class="de.lmu.ifi.medien.probui.gui.ProbUIContainerRelative"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:clipChildren="false"
+        android:gravity="bottom">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/play_demo_image_1" />
+
+        <SeekBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
+            android:id="@+id/progressBar"
+            android:focusable="false"
+            android:enabled="false"
+            android:minHeight="30dp"
+            android:indeterminate="false" />
+
+    <view
+        android:id="@+id/playButton"
+        class="de.lmu.ifi.medien.probuidemos.gui.elements.PlayButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:text=""
+        android:onClick="onClickPlayButton"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp" />
+
+    </view>
+
+
+
+
+</RelativeLayout>

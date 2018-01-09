@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProbCheckBox">
+        <attr name="direction" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="MyProbUISwatch">
+        <attr name="swatch_red" format="integer" />
+        <attr name="swatch_green" format="integer" />
+        <attr name="swatch_blue" format="integer" />
+    </declare-styleable>
+</resources>
