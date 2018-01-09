@@ -8,8 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/probui-library" />
+            <option value="$PROJECT_DIR$/probui_demo" />
+            <option value="$PROJECT_DIR$/probui_lib_module" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
