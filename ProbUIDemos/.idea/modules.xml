@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProbUIDemos.iml" filepath="$PROJECT_DIR$/ProbUIDemos.iml" />
       <module fileurl="file://$PROJECT_DIR$/probui-library/probui-library.iml" filepath="$PROJECT_DIR$/probui-library/probui-library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/probui_demo/app.iml" filepath="$PROJECT_DIR$/probui_demo/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/probui_demo/probui_demo.iml" filepath="$PROJECT_DIR$/probui_demo/probui_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/probui_lib_module/probui_lib_module.iml" filepath="$PROJECT_DIR$/probui_lib_module/probui_lib_module.iml" />
     </modules>
   </component>
