@@ -33,126 +33,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PlayButtonDemo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/probui_demo/src/main/java/de/lmu/ifi/medien/probuidemos/demos/PlayButtonDemo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="91" column="28" lean-forward="true" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#4370#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_play_button_demo.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_demo/src/main/res/layout/activity_play_button_demo.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="44" column="42" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlayButton.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_demo/src/main/java/de/lmu/ifi/medien/probuidemos/gui/elements/PlayButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3111">
-              <caret line="220" column="5" lean-forward="false" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#12405#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#3522#3523#0" expanded="false" />
-                <element signature="e#3554#3555#0" expanded="false" />
-                <element signature="e#3597#3598#0" expanded="false" />
-                <element signature="e#3624#3625#0" expanded="false" />
-                <element signature="e#6082#6083#0" expanded="false" />
-                <element signature="e#6117#6118#0" expanded="false" />
-                <element signature="e#10239#10240#0" expanded="false" />
-                <element signature="e#10263#10264#0" expanded="false" />
-                <element signature="e#10312#10313#0" expanded="false" />
-                <element signature="e#10336#10337#0" expanded="false" />
-                <element signature="e#11696#11697#0" expanded="false" />
-                <element signature="e#11738#11739#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProbUIManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/system/ProbUIManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5814">
-              <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tools.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/system/Tools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProbUIContainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/gui/ProbUIContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PMLRuleListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/pml/PMLRuleListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProbInteractorCore.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/gui/ProbInteractorCore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3128">
-              <caret line="225" column="42" lean-forward="false" selection-start-line="225" selection-start-column="42" selection-end-line="225" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#25396#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-                <element signature="e#6968#6969#0" expanded="true" />
-                <element signature="e#7017#7018#0" expanded="true" />
-                <element signature="e#21086#21087#0" expanded="true" />
-                <element signature="e#21119#21120#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProbInteractor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/gui/ProbInteractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -2959,30 +2840,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ProbUIDemos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probui_lib_module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ProbUIDemos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probui_demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2995,44 +2852,9 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ProbUIDemos" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probui_lib_module" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ProbUIDemos" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probui_lib_module" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ProbUIDemos" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="probui_demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -3057,6 +2879,31 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProbUIDemos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="probui_lib_module" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ProbUIDemos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="probui_demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3147,8 +2994,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515714008492" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516491142254" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3195,8 +3041,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515714008492" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516491142254" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3357,8 +3202,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515714008493" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516491142255" />
       </method>
     </configuration>
     <configuration default="false" name="probui_demo" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -3406,8 +3250,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515714008493" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516491142255" />
       </method>
     </configuration>
     <list size="2">
@@ -3468,9 +3311,9 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16494435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3515,6 +3358,108 @@
     <entry file="file://$PROJECT_DIR$/probui_demo/src/main/java/de/lmu/ifi/medien/probuidemos/gui/elements/PlayButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3111">
+          <caret line="220" column="5" lean-forward="false" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#12405#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3522#3523#0" expanded="false" />
+            <element signature="e#3554#3555#0" expanded="false" />
+            <element signature="e#3597#3598#0" expanded="false" />
+            <element signature="e#3624#3625#0" expanded="false" />
+            <element signature="e#6013#6014#0" expanded="false" />
+            <element signature="e#6051#6052#0" expanded="false" />
+            <element signature="e#6082#6083#0" expanded="false" />
+            <element signature="e#6117#6118#0" expanded="false" />
+            <element signature="e#10239#10240#0" expanded="false" />
+            <element signature="e#10263#10264#0" expanded="false" />
+            <element signature="e#10312#10313#0" expanded="false" />
+            <element signature="e#10336#10337#0" expanded="false" />
+            <element signature="e#11696#11697#0" expanded="false" />
+            <element signature="e#11738#11739#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/system/ProbUIManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5814">
+          <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/system/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/gui/ProbUIContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/pml/PMLRuleListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/gui/ProbInteractorCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3128">
+          <caret line="225" column="42" lean-forward="false" selection-start-line="225" selection-start-column="42" selection-end-line="225" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#25396#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#6968#6969#0" expanded="true" />
+            <element signature="e#7017#7018#0" expanded="true" />
+            <element signature="e#21086#21087#0" expanded="true" />
+            <element signature="e#21119#21120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_lib_module/src/main/java/de/lmu/ifi/medien/probui/gui/ProbInteractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="56" column="36" lean-forward="false" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_demo/src/main/java/de/lmu/ifi/medien/probuidemos/demos/PlayButtonDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#4370#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_demo/src/main/res/layout/activity_play_button_demo.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="44" column="42" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/probui_demo/src/main/java/de/lmu/ifi/medien/probuidemos/gui/elements/PlayButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3111">
           <caret line="220" column="5" lean-forward="true" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
           <folding>
             <element signature="e#0#12405#0" expanded="false" />
@@ -3523,6 +3468,8 @@
             <element signature="e#3554#3555#0" expanded="false" />
             <element signature="e#3597#3598#0" expanded="false" />
             <element signature="e#3624#3625#0" expanded="false" />
+            <element signature="e#6013#6014#0" expanded="false" />
+            <element signature="e#6051#6052#0" expanded="false" />
             <element signature="e#6082#6083#0" expanded="false" />
             <element signature="e#6117#6118#0" expanded="false" />
             <element signature="e#10239#10240#0" expanded="false" />
@@ -3606,6 +3553,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/probui_demo/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
@@ -3613,9 +3563,6 @@
             <element signature="e#416#434#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/probui-library/build.gradle">
@@ -3769,6 +3716,8 @@
             <element signature="e#3554#3555#0" expanded="false" />
             <element signature="e#3597#3598#0" expanded="false" />
             <element signature="e#3624#3625#0" expanded="false" />
+            <element signature="e#6013#6014#0" expanded="false" />
+            <element signature="e#6051#6052#0" expanded="false" />
             <element signature="e#6082#6083#0" expanded="false" />
             <element signature="e#6117#6118#0" expanded="false" />
             <element signature="e#10239#10240#0" expanded="false" />
@@ -3783,8 +3732,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/probui_demo/src/main/java/de/lmu/ifi/medien/probuidemos/demos/PlayButtonDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="91" column="28" lean-forward="true" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
+        <state relative-caret-position="254">
+          <caret line="85" column="49" lean-forward="false" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
             <element signature="e#0#4370#0" expanded="false" />
             <element signature="imports" expanded="false" />
