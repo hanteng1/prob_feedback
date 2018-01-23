@@ -17,7 +17,7 @@ import java.util.List;
  * Created by t_hant on 1/21/2018.
  */
 
-public class UIAdapter  extends BaseAdapter {
+public class UIAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
     private int repeatCount = 1;
@@ -56,6 +56,7 @@ public class UIAdapter  extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
+        //here it defines how the view looks like
         View layout = convertView;
         if(convertView == null)
         {

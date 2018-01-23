@@ -112,9 +112,7 @@ public class FlipViewController extends AdapterView<Adapter>{
 
         int orientation = VERTICAL;
 
-        TypedArray
-                a =
-                context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlipViewController, 0, 0);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.FlipViewController, 0, 0);
 
         try {
             int value = a.getInteger(R.styleable.FlipViewController_orientation, VERTICAL);
@@ -140,6 +138,7 @@ public class FlipViewController extends AdapterView<Adapter>{
     /**
      * Constructor required for XML inflation.
      */
+    //seems not used
     public FlipViewController(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -400,6 +399,7 @@ public class FlipViewController extends AdapterView<Adapter>{
 
     //--------------------------------------------------------------------------------------------------------------------
     // Internals
+    //used for initializing the interface
     private void setupSurfaceView(Context context) {
         surfaceView = new GLSurfaceView(getContext());
 
@@ -512,7 +512,7 @@ public class FlipViewController extends AdapterView<Adapter>{
                     requestLayout();
                     updateVisibleView(bufferIndex);
                 }
-            } else if (indexInAdapter == adapterIndex - 1) {
+            } else if (indexInAdapter == adapterIndex - 1) {  //backward one page
                 if (adapterIndex > 0) {
                     adapterIndex--;
                     View old = bufferedViews.get(bufferIndex);

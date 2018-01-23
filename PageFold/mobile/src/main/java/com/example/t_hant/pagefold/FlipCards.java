@@ -9,6 +9,8 @@ import com.example.t_hant.pagefold.utils.UI;
 
 import junit.framework.Assert;
 
+import java.nio.channels.FileLock;
+
 import javax.microedition.khronos.opengles.GL10;
 
 /**
@@ -27,8 +29,12 @@ public class FlipCards {
     private static final int STATE_TOUCH = 1;
     private static final int STATE_AUTO_ROTATE = 2;
 
+    //stacked cards
     private ViewDualCards frontCards;
     private ViewDualCards backCards;
+
+    //folded cards
+    //should be an list storing all cards
 
     private float accumulatedAngle = 0f;
     private boolean forward = true;
@@ -107,24 +113,18 @@ public class FlipCards {
 
     public void reloadTexture(int frontIndex, View frontView, int backIndex, View backView) {
         synchronized (this) {
-            boolean
-                    frontChanged =
-                    frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
-            boolean
-                    backChanged =
-                    backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
+            boolean frontChanged = frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
+            boolean backChanged = backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
 
             if (MLog.ENABLE_DEBUG) {
-                MLog
-                        .d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
+                MLog.d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
                                 frontView, backView, frontCards.getView(), backCards.getView(), frontChanged,
                                 backChanged);
             }
 
             if (MLog.ENABLE_DEBUG) {
                 MLog.d("reloadTexture: activeIndex %d, front %d, back %d, angle %.1f",
-                        getPageIndexFromAngle(accumulatedAngle), frontIndex, backIndex,
-                        accumulatedAngle);
+                        getPageIndexFromAngle(accumulatedAngle), frontIndex, backIndex, accumulatedAngle);
             }
         }
     }
@@ -167,6 +167,8 @@ public class FlipCards {
                 float oldAngle = accumulatedAngle;
 
                 accumulatedAngle += delta;
+
+                //MLog.d("accumulatedAngle: " + Float.toString(accumulatedAngle));
 
                 if (oldAngle < 0) { //bouncing back after flip backward and over the first page
                     Assert.assertTrue(forward);
@@ -217,6 +219,8 @@ public class FlipCards {
         }
 
         float angle = getDisplayAngle();
+        MLog.d("angle: " + Float.toString(angle));
+
         if (angle < 0) {
             frontCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
             frontCards.getTopCard().setAngle(-angle);
@@ -226,6 +230,15 @@ public class FlipCards {
             frontCards.getBottomCard().draw(gl);
 
             //no need to draw backCards here
+        }else if(angle == 0)
+        {
+            frontCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
+            frontCards.getTopCard().setAngle(-60);
+            frontCards.getTopCard().draw(gl);
+
+            frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
+            frontCards.getBottomCard().setAngle(60);
+            frontCards.getBottomCard().draw(gl);
         } else {
             if (angle < 90) { //render front view over back view
                 frontCards.getTopCard().setAngle(0);
@@ -269,21 +282,21 @@ public class FlipCards {
                 lastPosition = orientationVertical ? event.getY() : event.getX();
                 return isOnTouchEvent;
             case MotionEvent.ACTION_MOVE:
-                float
-                        delta =
-                        orientationVertical ? (lastPosition - event.getY()) : (lastPosition - event.getX());
+                float delta = orientationVertical ? (lastPosition - event.getY()) : (lastPosition - event.getX());
 
                 if (Math.abs(delta) > controller.getTouchSlop()) {
-                    setState(STATE_TOUCH);
-                    forward = delta > 0;
+                    setState(STATE_TOUCH);  //take control whenever a touch move happens
+                    forward = delta > 0;  //swipe upwards
                 }
+
                 if (state == STATE_TOUCH) {
                     if (Math.abs(delta) > MIN_MOVEMENT) //ignore small movements
                     {
-                        forward = delta > 0;
+                        forward = delta > 0;  //true or false
                     }
 
-                    controller.showFlipAnimation();
+                    controller.showFlipAnimation(); //request render, only for switching inFlipAnimation to true
+                    //after this,, visible = true
 
                     float angleDelta;
                     if (orientationVertical) {
@@ -292,13 +305,16 @@ public class FlipCards {
                         angleDelta = 180 * delta / controller.getContentWidth() * MOVEMENT_RATE;
                     }
 
-                    if (Math.abs(angleDelta)
-                            > MAX_TOUCH_MOVE_ANGLE) //prevent large delta when moving too fast
+                    //convert from touch position delta to angle delta and use it to update accumulatedAngle
+                    //MLog.d("angledelta: " +  Float.toString(angleDelta) + ",  contentheight: " + Float.toString(controller.getContentHeight()));
+
+                    if (Math.abs(angleDelta) > MAX_TOUCH_MOVE_ANGLE) //prevent large delta when moving too fast
                     {
                         angleDelta = Math.signum(angleDelta) * MAX_TOUCH_MOVE_ANGLE;
                     }
 
                     // do not flip more than one page with one touch...
+                    //accumulatedAngle at most add 180 per touch event
                     if (Math.abs(getPageIndexFromAngle(accumulatedAngle + angleDelta) - lastPageIndex) <= 1) {
                         accumulatedAngle += angleDelta;
                     }
@@ -306,28 +322,30 @@ public class FlipCards {
                     //Bounce the page for the first and the last page
                     if (frontCards.getIndex() == maxIndex - 1) { //the last page
                         if (accumulatedAngle > frontCards.getIndex() * 180) {
-                            accumulatedAngle =
-                                    Math.min(accumulatedAngle,
-                                            controller.isOverFlipEnabled() ? (frontCards.getIndex() * 180
-                                                    + MAX_TIP_ANGLE)
-                                                    : (frontCards.getIndex() * 180));
+                            accumulatedAngle = Math.min(accumulatedAngle, controller.isOverFlipEnabled() ? (frontCards.getIndex() * 180 + MAX_TIP_ANGLE) : (frontCards.getIndex() * 180));
                         }
                     }
 
+                    //accumulatedAngle at most reduced to a certian degree
                     if (accumulatedAngle < 0) {
-                        accumulatedAngle =
-                                Math.max(accumulatedAngle, controller.isOverFlipEnabled() ? -MAX_TIP_ANGLE : 0);
+                        accumulatedAngle = Math.max(accumulatedAngle, controller.isOverFlipEnabled() ? -MAX_TIP_ANGLE : 0);
                     }
 
+                    //anglepageindex points to the page to show up
+                    //swipe up -> a front page
+                    //swipe down -> a back page
                     int anglePageIndex = getPageIndexFromAngle(accumulatedAngle);
+
+                    //MLog.d("accumulatedAngle: " + Float.toString(accumulatedAngle));
 
                     if (accumulatedAngle >= 0) {
                         if (anglePageIndex != frontCards.getIndex()) {
                             if (anglePageIndex == frontCards.getIndex() - 1) { //moved to previous page
                                 swapCards(); //frontCards becomes the backCards
-                                frontCards.resetWithIndex(backCards.getIndex() - 1);
-                                controller.flippedToView(anglePageIndex, false);
+                                frontCards.resetWithIndex(backCards.getIndex() - 1);  //reset is clean up, but just associated with a id
+                                controller.flippedToView(anglePageIndex, false);  //feels like this is an important step
                             } else if (anglePageIndex == frontCards.getIndex() + 1) { //moved to next page
+                                //seems like this is barely called
                                 swapCards();
                                 backCards.resetWithIndex(frontCards.getIndex() + 1);
                                 controller.flippedToView(anglePageIndex, false);
@@ -341,7 +359,7 @@ public class FlipCards {
 
                     lastPosition = orientationVertical ? event.getY() : event.getX();
 
-                    controller.getSurfaceView().requestRender();
+                    controller.getSurfaceView().requestRender();  //request render
                     return true;
                 }
 

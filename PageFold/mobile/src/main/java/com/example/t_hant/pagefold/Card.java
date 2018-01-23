@@ -201,6 +201,7 @@ public class Card {
             gl.glDisable(GL_TEXTURE_2D);
         }
 
+        //draw shadow
         float w, h, z;
         float[] shadowVertices;
 
