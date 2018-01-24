@@ -218,8 +218,10 @@ public class FlipCards {
                 break;
         }
 
+        //only when touch event happends, or when animation happens
+
         float angle = getDisplayAngle();
-        MLog.d("angle: " + Float.toString(angle));
+        //MLog.d("angle: " + Float.toString(angle));
 
         if (angle < 0) {
             frontCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
@@ -230,43 +232,61 @@ public class FlipCards {
             frontCards.getBottomCard().draw(gl);
 
             //no need to draw backCards here
-        }else if(angle == 0)
-        {
+        }
+//        else if(angle == 0)
+//        {
+//
+//            frontCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
+//            frontCards.getTopCard().setAngle(-60);
+//            frontCards.getTopCard().draw(gl);
+//
+//            frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
+//            frontCards.getBottomCard().setAngle(60);
+//            frontCards.getBottomCard().draw(gl);
+//        }
+        else {
+//
+//            if (angle < 90) { //render front view over back view
+//                frontCards.getTopCard().setAngle(0);
+//                frontCards.getTopCard().draw(gl);
+//
+//                backCards.getBottomCard().setAngle(0);
+//                backCards.getBottomCard().draw(gl);
+//
+//                frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
+//                frontCards.getBottomCard().setAngle(angle);
+//                frontCards.getBottomCard().draw(gl);
+//            } else { //render back view first
+//                frontCards.getTopCard().setAngle(0);
+//                frontCards.getTopCard().draw(gl);
+//
+//                backCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
+//                backCards.getTopCard().setAngle(180 - angle);
+//                backCards.getTopCard().draw(gl);
+//
+//                backCards.getBottomCard().setAngle(0);
+//                backCards.getBottomCard().draw(gl);
+//            }
+//
+
+            //for quick demo
             frontCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
-            frontCards.getTopCard().setAngle(-60);
+            frontCards.getTopCard().setAngle(angle);
             frontCards.getTopCard().draw(gl);
 
             frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
-            frontCards.getBottomCard().setAngle(60);
+            frontCards.getBottomCard().setAngle(angle);
             frontCards.getBottomCard().draw(gl);
-        } else {
-            if (angle < 90) { //render front view over back view
-                frontCards.getTopCard().setAngle(0);
-                frontCards.getTopCard().draw(gl);
 
-                backCards.getBottomCard().setAngle(0);
-                backCards.getBottomCard().draw(gl);
-
-                frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
-                frontCards.getBottomCard().setAngle(angle);
-                frontCards.getBottomCard().draw(gl);
-            } else { //render back view first
-                frontCards.getTopCard().setAngle(0);
-                frontCards.getTopCard().draw(gl);
-
-                backCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
-                backCards.getTopCard().setAngle(180 - angle);
-                backCards.getTopCard().draw(gl);
-
-                backCards.getBottomCard().setAngle(0);
-                backCards.getBottomCard().draw(gl);
-            }
         }
 
         if ((frontCards.getView() == null || TextureUtils.isValidTexture(frontCards.getTexture())) &&
-                (backCards.getView() == null || TextureUtils.isValidTexture(backCards.getTexture()))
-                )
+                (backCards.getView() == null || TextureUtils.isValidTexture(backCards.getTexture())))
+        {
             firstDrawFinished = true;
+        }
+
+
     }
 
     public void invalidateTexture() {

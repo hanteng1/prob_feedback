@@ -159,12 +159,13 @@ public class Card {
             checkError(gl);
         }
 
+        //draw folded page
         gl.glPushMatrix();
 
         if (orientationVertical) {
             if (angle > 0) {
                 if (axis == AXIS_TOP) {
-                    gl.glTranslatef(0, cardVertices[Y_00], 0f);
+                    gl.glTranslatef(0, cardVertices[Y_00], 0f); //translate the coordinates for rotation
                     gl.glRotatef(-angle, 1f, 0f, 0f);
                     gl.glTranslatef(0, -cardVertices[Y_00], 0f);
                 } else {
@@ -201,12 +202,12 @@ public class Card {
             gl.glDisable(GL_TEXTURE_2D);
         }
 
-        //draw shadow
+        //draw shadow, while cardvertices remain unchanged
         float w, h, z;
         float[] shadowVertices;
 
         if (angle > 0) {
-            float alpha = 1f * (90f - angle) / 90f;
+            float alpha = 1f * (90f - angle) / 90f;  //decreasing
 
             if (axis == AXIS_TOP) {
                 if (orientationVertical) {

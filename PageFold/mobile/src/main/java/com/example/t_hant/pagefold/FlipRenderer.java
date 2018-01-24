@@ -112,6 +112,7 @@ public class FlipRenderer implements GLSurfaceView.Renderer{
             gl.glClearColor(1f, 1f, 1f, 1f);
         else
             gl.glClearColor(0f, 0f, 0f, 0f);
+
         gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         synchronized (postDestroyTextures) {
