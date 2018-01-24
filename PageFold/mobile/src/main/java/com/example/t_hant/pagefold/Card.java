@@ -163,15 +163,26 @@ public class Card {
         gl.glPushMatrix();
 
         if (orientationVertical) {
+
+            float foldingDepth;
             if (angle > 0) {
+
+                foldingDepth = (cardVertices[Y_00] - cardVertices[Y_01]) * (float)sin(d2r(angle));
+
                 if (axis == AXIS_TOP) {
+                    gl.glTranslatef(0, 0, -foldingDepth);
                     gl.glTranslatef(0, cardVertices[Y_00], 0f); //translate the coordinates for rotation
                     gl.glRotatef(-angle, 1f, 0f, 0f);
+                    //gl.glTranslatef(0, -cardVertices[Y_00], 0f);
                     gl.glTranslatef(0, -cardVertices[Y_00], 0f);
+
                 } else {
+                    gl.glTranslatef(0, 0, -foldingDepth);
                     gl.glTranslatef(0, cardVertices[Y_11], 0f);
                     gl.glRotatef(angle, 1f, 0f, 0f);
+                    //gl.glTranslatef(0, -cardVertices[Y_11], 0f);
                     gl.glTranslatef(0, -cardVertices[Y_11], 0f);
+
                 }
             }
         } else {
