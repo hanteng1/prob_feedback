@@ -294,6 +294,120 @@ public class FlipCards {
         backCards.abandonTexture();
     }
 
+
+    //original handle touch events
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+//    public synchronized boolean handleTouchEvent(MotionEvent event, boolean isOnTouchEvent) {
+//        switch (event.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//                // remember page we started on...
+//                lastPageIndex = getPageIndexFromAngle(accumulatedAngle);
+//                lastPosition = orientationVertical ? event.getY() : event.getX();
+//                return isOnTouchEvent;
+//            case MotionEvent.ACTION_MOVE:
+//                float delta = orientationVertical ? (lastPosition - event.getY()) : (lastPosition - event.getX());
+//
+//                if (Math.abs(delta) > controller.getTouchSlop()) {
+//                    setState(STATE_TOUCH);  //take control whenever a touch move happens
+//                    forward = delta > 0;  //swipe upwards
+//                }
+//
+//                if (state == STATE_TOUCH) {
+//                    if (Math.abs(delta) > MIN_MOVEMENT) //ignore small movements
+//                    {
+//                        forward = delta > 0;  //true or false
+//                    }
+//
+//                    controller.showFlipAnimation(); //request render, only for switching inFlipAnimation to true
+//                    //after this,, visible = true
+//
+//                    float angleDelta;
+//                    if (orientationVertical) {
+//                        angleDelta = 180 * delta / controller.getContentHeight() * MOVEMENT_RATE;
+//                    } else {
+//                        angleDelta = 180 * delta / controller.getContentWidth() * MOVEMENT_RATE;
+//                    }
+//
+//                    //convert from touch position delta to angle delta and use it to update accumulatedAngle
+//                    //MLog.d("angledelta: " +  Float.toString(angleDelta) + ",  contentheight: " + Float.toString(controller.getContentHeight()));
+//
+//                    if (Math.abs(angleDelta) > MAX_TOUCH_MOVE_ANGLE) //prevent large delta when moving too fast
+//                    {
+//                        angleDelta = Math.signum(angleDelta) * MAX_TOUCH_MOVE_ANGLE;
+//                    }
+//
+//                    // do not flip more than one page with one touch...
+//                    //accumulatedAngle at most add 180 per touch event
+//                    if (Math.abs(getPageIndexFromAngle(accumulatedAngle + angleDelta) - lastPageIndex) <= 1) {
+//                        accumulatedAngle += angleDelta;
+//                    }
+//
+//                    //Bounce the page for the first and the last page
+//                    if (frontCards.getIndex() == maxIndex - 1) { //the last page
+//                        if (accumulatedAngle > frontCards.getIndex() * 180) {
+//                            accumulatedAngle = Math.min(accumulatedAngle, controller.isOverFlipEnabled() ? (frontCards.getIndex() * 180 + MAX_TIP_ANGLE) : (frontCards.getIndex() * 180));
+//                        }
+//                    }
+//
+//                    //accumulatedAngle at most reduced to a certian degree
+//                    if (accumulatedAngle < 0) {
+//                        accumulatedAngle = Math.max(accumulatedAngle, controller.isOverFlipEnabled() ? -MAX_TIP_ANGLE : 0);
+//                    }
+//
+//                    //anglepageindex points to the page to show up
+//                    //swipe up -> a front page
+//                    //swipe down -> a back page
+//                    int anglePageIndex = getPageIndexFromAngle(accumulatedAngle);
+//
+//                    //MLog.d("accumulatedAngle: " + Float.toString(accumulatedAngle));
+//
+//                    if (accumulatedAngle >= 0) {
+//                        if (anglePageIndex != frontCards.getIndex()) {
+//                            if (anglePageIndex == frontCards.getIndex() - 1) { //moved to previous page
+//                                swapCards(); //frontCards becomes the backCards
+//                                frontCards.resetWithIndex(backCards.getIndex() - 1);  //reset is clean up, but just associated with a id
+//                                controller.flippedToView(anglePageIndex, false);  //feels like this is an important step
+//                            } else if (anglePageIndex == frontCards.getIndex() + 1) { //moved to next page
+//                                //seems like this is barely called
+//                                swapCards();
+//                                backCards.resetWithIndex(frontCards.getIndex() + 1);
+//                                controller.flippedToView(anglePageIndex, false);
+//                            } else {
+//                                throw new RuntimeException(MLog.format(
+//                                        "Inconsistent states: anglePageIndex: %d, accumulatedAngle %.1f, frontCards %d, backCards %d",
+//                                        anglePageIndex, accumulatedAngle, frontCards.getIndex(), backCards.getIndex()));
+//                            }
+//                        }
+//                    }
+//
+//                    lastPosition = orientationVertical ? event.getY() : event.getX();
+//
+//                    controller.getSurfaceView().requestRender();  //request render
+//                    return true;
+//                }
+//
+//                return isOnTouchEvent;
+//            case MotionEvent.ACTION_UP:
+//            case MotionEvent.ACTION_CANCEL:
+//                if (state == STATE_TOUCH) {
+//                    if (accumulatedAngle < 0) {
+//                        forward = true;
+//                    } else if (accumulatedAngle >= frontCards.getIndex() * 180
+//                            && frontCards.getIndex() == maxIndex - 1) {
+//                        forward = false;
+//                    }
+//
+//                    setState(STATE_AUTO_ROTATE);
+//                    controller.getSurfaceView().requestRender();
+//                }
+//                return isOnTouchEvent;
+//        }
+//
+//        return false;
+//    }
+
+
+    //try new handle touch events
     public synchronized boolean handleTouchEvent(MotionEvent event, boolean isOnTouchEvent) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -402,6 +516,9 @@ public class FlipCards {
 
         return false;
     }
+
+
+
 
     private void swapCards() {
         ViewDualCards tmp = frontCards;
