@@ -29,7 +29,11 @@ import java.util.LinkedList;
  * Created by t_hant on 1/20/2018.
  */
 
+
 public class FlipViewController extends AdapterView<Adapter>{
+
+    //list view is a subclass of adapterview
+    //itself is a view used for setcontentview\
 
     public static final int VERTICAL = 0;
     public static final int HORIZONTAL = 1;
@@ -285,6 +289,8 @@ public class FlipViewController extends AdapterView<Adapter>{
     @Override
     public View getSelectedView()
     {
+        MLog.d("getselectedview called");
+
         return (bufferIndex < bufferedViews.size() && bufferIndex >= 0) ? bufferedViews.get(bufferIndex)
                 : null;
     }
@@ -292,6 +298,8 @@ public class FlipViewController extends AdapterView<Adapter>{
     @Override
     public void setSelection(int position)
     {
+        MLog.d("setselection called");
+
         if(adapter == null)
         {
             return;
@@ -319,7 +327,7 @@ public class FlipViewController extends AdapterView<Adapter>{
         bufferIndex = bufferedViews.indexOf(selectedView);
         adapterIndex = position;
 
-        requestLayout();
+        requestLayout();  //call the onlayout method
         updateVisibleView(inFlipAnimation ? -1 : bufferIndex);
 
         cards.resetSelection(position, adapterDataCount);
@@ -330,6 +338,9 @@ public class FlipViewController extends AdapterView<Adapter>{
     // Layout
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+        MLog.d("onlayout called");
+
         if (MLog.ENABLE_DEBUG) {
             MLog.d("onLayout: %d, %d, %d, %d; child %d", l, t, r, b, bufferedViews.size());
         }
@@ -362,6 +373,8 @@ public class FlipViewController extends AdapterView<Adapter>{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        MLog.d("onmeasure called");
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         for (View child : bufferedViews) {
@@ -412,6 +425,7 @@ public class FlipViewController extends AdapterView<Adapter>{
         surfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
+        //add a view during layout
         addViewInLayout(surfaceView, -1, new AbsListView.LayoutParams(LayoutParams.FILL_PARENT,
                 LayoutParams.FILL_PARENT), false);
     }

@@ -10,6 +10,7 @@ import com.example.t_hant.pagefold.utils.UI;
 import junit.framework.Assert;
 
 import java.nio.channels.FileLock;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -30,11 +31,15 @@ public class FlipCards {
     private static final int STATE_AUTO_ROTATE = 2;
 
     //stacked cards
-    private ViewDualCards frontCards;
-    private ViewDualCards backCards;
+    //private ViewDualCards frontCards;
+    //private ViewDualCards backCards;
+
+    //this class manages cards and handle touch events, and place the render command
 
     //folded cards
     //should be an list storing all cards
+    private ArrayList<ViewDualCards> foldingCards;
+    private int numCards = 2;
 
     private float accumulatedAngle = 0f;
     private boolean forward = true;
@@ -57,8 +62,17 @@ public class FlipCards {
     public FlipCards(FlipViewController controller, boolean orientationVertical) {
         this.controller = controller;
 
-        frontCards = new ViewDualCards(orientationVertical);
-        backCards = new ViewDualCards(orientationVertical);
+        //frontCards = new ViewDualCards(orientationVertical);
+        //backCards = new ViewDualCards(orientationVertical);
+
+        foldingCards = new ArrayList<ViewDualCards>();
+
+        for(int itrc = 0; itrc < numCards; itrc++)
+        {
+            ViewDualCards tempCard = new ViewDualCards(orientationVertical);
+            foldingCards.add(tempCard);
+        }
+
         this.orientationVertical = orientationVertical;
     }
 
@@ -80,13 +94,22 @@ public class FlipCards {
 
     boolean refreshPageView(View view) {
         boolean match = false;
-        if (frontCards.getView() == view) {
-            frontCards.resetWithIndex(frontCards.getIndex());
-            match = true;
-        }
-        if (backCards.getView() == view) {
-            backCards.resetWithIndex(backCards.getIndex());
-            match = true;
+//        if (frontCards.getView() == view) {
+//            frontCards.resetWithIndex(frontCards.getIndex());
+//            match = true;
+//        }
+//        if (backCards.getView() == view) {
+//            backCards.resetWithIndex(backCards.getIndex());
+//            match = true;
+//        }
+
+        for(int itrc = 0; itrc < numCards; itrc++)
+        {
+            if(foldingCards.get(itrc).getView() == view)
+            {
+                foldingCards.get(itrc).resetWithIndex(foldingCards.get(itrc).getIndex());
+                match = true;
+            }
         }
 
         return match;
@@ -94,38 +117,57 @@ public class FlipCards {
 
     boolean refreshPage(int pageIndex) {
         boolean match = false;
-        if (frontCards.getIndex() == pageIndex) {
-            frontCards.resetWithIndex(pageIndex);
-            match = true;
-        }
-        if (backCards.getIndex() == pageIndex) {
-            backCards.resetWithIndex(pageIndex);
-            match = true;
+//        if (frontCards.getIndex() == pageIndex) {
+//            frontCards.resetWithIndex(pageIndex);
+//            match = true;
+//        }
+//        if (backCards.getIndex() == pageIndex) {
+//            backCards.resetWithIndex(pageIndex);
+//            match = true;
+//        }
+        for(int itrc = 0; itrc < numCards; itrc++)
+        {
+            if(foldingCards.get(itrc).getIndex() == pageIndex)
+            {
+                foldingCards.get(itrc).resetWithIndex(pageIndex);
+                match = true;
+            }
         }
 
         return match;
     }
 
     void refreshAllPages() {
-        frontCards.resetWithIndex(frontCards.getIndex());
-        backCards.resetWithIndex(backCards.getIndex());
+        //frontCards.resetWithIndex(frontCards.getIndex());
+        //backCards.resetWithIndex(backCards.getIndex());
+
+        for(int itrc = 0; itrc < numCards; itrc++)
+        {
+            foldingCards.get(itrc).resetWithIndex(foldingCards.get(itrc).getIndex());
+        }
     }
 
     public void reloadTexture(int frontIndex, View frontView, int backIndex, View backView) {
         synchronized (this) {
-            boolean frontChanged = frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
-            boolean backChanged = backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
+            //boolean frontChanged = frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
+            //boolean backChanged = backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
 
-            if (MLog.ENABLE_DEBUG) {
-                MLog.d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
-                                frontView, backView, frontCards.getView(), backCards.getView(), frontChanged,
-                                backChanged);
+//            if (MLog.ENABLE_DEBUG) {
+//                MLog.d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
+//                                frontView, backView, frontCards.getView(), backCards.getView(), frontChanged,
+//                                backChanged);
+//            }
+//
+//            if (MLog.ENABLE_DEBUG) {
+//                MLog.d("reloadTexture: activeIndex %d, front %d, back %d, angle %.1f",
+//                        getPageIndexFromAngle(accumulatedAngle), frontIndex, backIndex, accumulatedAngle);
+//            }
+
+            for(int itrc = 0; itrc < numCards; itrc++)
+            {
+                boolean changed = foldingCards.get(itrc).loadView()
             }
 
-            if (MLog.ENABLE_DEBUG) {
-                MLog.d("reloadTexture: activeIndex %d, front %d, back %d, angle %.1f",
-                        getPageIndexFromAngle(accumulatedAngle), frontIndex, backIndex, accumulatedAngle);
-            }
         }
     }
 
