@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.t_hant.pagefold.utils.MLog;
@@ -60,6 +61,7 @@ public class UIAdapter extends BaseAdapter {
         View layout = convertView;
         if(convertView == null)
         {
+            //if not exist, create a new view
             layout = inflater.inflate(R.layout.basic, null);
             MLog.d("created new view from adapter: %d", position);
         }

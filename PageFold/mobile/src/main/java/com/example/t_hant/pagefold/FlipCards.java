@@ -31,8 +31,8 @@ public class FlipCards {
     private static final int STATE_AUTO_ROTATE = 2;
 
     //stacked cards
-    //private ViewDualCards frontCards;
-    //private ViewDualCards backCards;
+    private ViewDualCards frontCards;
+    private ViewDualCards backCards;
 
     //this class manages cards and handle touch events, and place the render command
 
@@ -62,8 +62,8 @@ public class FlipCards {
     public FlipCards(FlipViewController controller, boolean orientationVertical) {
         this.controller = controller;
 
-        //frontCards = new ViewDualCards(orientationVertical);
-        //backCards = new ViewDualCards(orientationVertical);
+        frontCards = new ViewDualCards(orientationVertical);
+        backCards = new ViewDualCards(orientationVertical);
 
         foldingCards = new ArrayList<ViewDualCards>();
 
@@ -94,79 +94,79 @@ public class FlipCards {
 
     boolean refreshPageView(View view) {
         boolean match = false;
-//        if (frontCards.getView() == view) {
-//            frontCards.resetWithIndex(frontCards.getIndex());
-//            match = true;
-//        }
-//        if (backCards.getView() == view) {
-//            backCards.resetWithIndex(backCards.getIndex());
-//            match = true;
-//        }
-
-        for(int itrc = 0; itrc < numCards; itrc++)
-        {
-            if(foldingCards.get(itrc).getView() == view)
-            {
-                foldingCards.get(itrc).resetWithIndex(foldingCards.get(itrc).getIndex());
-                match = true;
-            }
+        if (frontCards.getView() == view) {
+            frontCards.resetWithIndex(frontCards.getIndex());
+            match = true;
         }
+        if (backCards.getView() == view) {
+            backCards.resetWithIndex(backCards.getIndex());
+            match = true;
+        }
+
+//        for(int itrc = 0; itrc < numCards; itrc++)
+//        {
+//            if(foldingCards.get(itrc).getView() == view)
+//            {
+//                foldingCards.get(itrc).resetWithIndex(foldingCards.get(itrc).getIndex());
+//                match = true;
+//            }
+//        }
 
         return match;
     }
 
     boolean refreshPage(int pageIndex) {
         boolean match = false;
-//        if (frontCards.getIndex() == pageIndex) {
-//            frontCards.resetWithIndex(pageIndex);
-//            match = true;
-//        }
-//        if (backCards.getIndex() == pageIndex) {
-//            backCards.resetWithIndex(pageIndex);
-//            match = true;
-//        }
-        for(int itrc = 0; itrc < numCards; itrc++)
-        {
-            if(foldingCards.get(itrc).getIndex() == pageIndex)
-            {
-                foldingCards.get(itrc).resetWithIndex(pageIndex);
-                match = true;
-            }
+        if (frontCards.getIndex() == pageIndex) {
+            frontCards.resetWithIndex(pageIndex);
+            match = true;
         }
+        if (backCards.getIndex() == pageIndex) {
+            backCards.resetWithIndex(pageIndex);
+            match = true;
+        }
+//        for(int itrc = 0; itrc < numCards; itrc++)
+//        {
+//            if(foldingCards.get(itrc).getIndex() == pageIndex)
+//            {
+//                foldingCards.get(itrc).resetWithIndex(pageIndex);
+//                match = true;
+//            }
+//        }
 
         return match;
     }
 
     void refreshAllPages() {
-        //frontCards.resetWithIndex(frontCards.getIndex());
-        //backCards.resetWithIndex(backCards.getIndex());
+        frontCards.resetWithIndex(frontCards.getIndex());
+        backCards.resetWithIndex(backCards.getIndex());
 
-        for(int itrc = 0; itrc < numCards; itrc++)
-        {
-            foldingCards.get(itrc).resetWithIndex(foldingCards.get(itrc).getIndex());
-        }
+//        for(int itrc = 0; itrc < numCards; itrc++)
+//        {
+//            foldingCards.get(itrc).resetWithIndex(foldingCards.get(itrc).getIndex());
+//        }
     }
 
     public void reloadTexture(int frontIndex, View frontView, int backIndex, View backView) {
         synchronized (this) {
-            //boolean frontChanged = frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
-            //boolean backChanged = backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
+            boolean frontChanged = frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
+            boolean backChanged = backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
 
-//            if (MLog.ENABLE_DEBUG) {
-//                MLog.d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
-//                                frontView, backView, frontCards.getView(), backCards.getView(), frontChanged,
-//                                backChanged);
-//            }
-//
-//            if (MLog.ENABLE_DEBUG) {
-//                MLog.d("reloadTexture: activeIndex %d, front %d, back %d, angle %.1f",
-//                        getPageIndexFromAngle(accumulatedAngle), frontIndex, backIndex, accumulatedAngle);
-//            }
-
-            for(int itrc = 0; itrc < numCards; itrc++)
-            {
-                boolean changed = foldingCards.get(itrc).loadView()
+            if (MLog.ENABLE_DEBUG) {
+                MLog.d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
+                                frontView, backView, frontCards.getView(), backCards.getView(), frontChanged,
+                                backChanged);
             }
+
+            if (MLog.ENABLE_DEBUG) {
+                MLog.d("reloadTexture: activeIndex %d, front %d, back %d, angle %.1f",
+                        getPageIndexFromAngle(accumulatedAngle), frontIndex, backIndex, accumulatedAngle);
+            }
+
+//            for(int itrc = 0; itrc < numCards; itrc++)
+//            {
+//                boolean changed = foldingCards.get(itrc).loadView()
+//            }
 
         }
     }
@@ -258,7 +258,7 @@ public class FlipCards {
             default:
                 MLog.e("Invalid state: " + state);
                 break;
-        }
+        } //end of switch
 
         //only when touch event happends, or when animation happens
 
@@ -275,17 +275,6 @@ public class FlipCards {
 
             //no need to draw backCards here
         }
-//        else if(angle == 0)
-//        {
-//
-//            frontCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
-//            frontCards.getTopCard().setAngle(-60);
-//            frontCards.getTopCard().draw(gl);
-//
-//            frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
-//            frontCards.getBottomCard().setAngle(60);
-//            frontCards.getBottomCard().draw(gl);
-//        }
         else {
 //
 //            if (angle < 90) { //render front view over back view
@@ -319,6 +308,14 @@ public class FlipCards {
             frontCards.getBottomCard().setAxis(Card.AXIS_TOP);
             frontCards.getBottomCard().setAngle(angle);
             frontCards.getBottomCard().draw(gl);
+
+            backCards.getTopCard().setAxis(Card.AXIS_BOTTOM);
+            backCards.getTopCard().setAngle(angle);
+            backCards.getTopCard().draw(gl);
+
+            backCards.getBottomCard().setAxis(Card.AXIS_TOP);
+            backCards.getBottomCard().setAngle(angle);
+            backCards.getBottomCard().draw(gl);
 
         }
 

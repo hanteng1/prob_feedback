@@ -16,6 +16,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AbsoluteLayout;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 
@@ -298,6 +299,7 @@ public class FlipViewController extends AdapterView<Adapter>{
     @Override
     public void setSelection(int position)
     {
+        //this was first called
         MLog.d("setselection called");
 
         if(adapter == null)
@@ -309,9 +311,12 @@ public class FlipViewController extends AdapterView<Adapter>{
 
         releaseViews();
 
+        //saving a current view
         View selectedView = viewFromAdapter(position, true);
         bufferedViews.add(selectedView);
 
+        //buffersize is 1, set at the beginning
+        //saving a previous, and a next view
         for (int i = 1; i <= sideBufferSize; i++) {
             int previous = position - i;
             int next = position + i;
@@ -328,6 +333,8 @@ public class FlipViewController extends AdapterView<Adapter>{
         adapterIndex = position;
 
         requestLayout();  //call the onlayout method
+
+
         updateVisibleView(inFlipAnimation ? -1 : bufferIndex);
 
         cards.resetSelection(position, adapterDataCount);
@@ -339,16 +346,28 @@ public class FlipViewController extends AdapterView<Adapter>{
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
-        MLog.d("onlayout called");
+        MLog.d("onlayout called " + (changed ? "1" : "0"));
 
         if (MLog.ENABLE_DEBUG) {
             MLog.d("onLayout: %d, %d, %d, %d; child %d", l, t, r, b, bufferedViews.size());
         }
 
-        for (View child : bufferedViews) {
-            child.layout(0, 0, r - l, b - t);
+        //important section to update the view layout
+
+//        for (View child : bufferedViews) {
+//
+//            child.layout(0, 0, r - l, b - t);
+//        }
+
+        int buffersize = bufferedViews.size();
+        for (int itrv =0; itrv < buffersize; itrv++)
+        {
+            View child = bufferedViews.get(itrv);
+            child.layout(0, itrv * (b-t) / buffersize, r-l, (itrv + 1) * (b-t) / buffersize );
         }
 
+
+        //called only once at the beginning, to set the surfaceview
         if (changed || contentWidth == 0) {
             int w = r - l;
             int h = b - t;
@@ -361,7 +380,7 @@ public class FlipViewController extends AdapterView<Adapter>{
         }
 
         if (bufferedViews.size() >= 1) {
-            View frontView = bufferedViews.get(bufferIndex);
+            View frontView = bufferedViews.get(bufferIndex);  //get the current view
             View backView = null;
             if (bufferIndex < bufferedViews.size() - 1) {
                 backView = bufferedViews.get(bufferIndex + 1);
@@ -455,8 +474,10 @@ public class FlipViewController extends AdapterView<Adapter>{
     private View viewFromAdapter(int position, boolean addToTop) {
         Assert.assertNotNull(adapter);
 
+        //remove and return the first
         View releasedView = releasedViews.isEmpty() ? null : releasedViews.removeFirst();
 
+        //getview was defined in UIAdapter
         View view = adapter.getView(position, releasedView, this);
         if (releasedView != null && view != releasedView) {
             addReleasedView(releasedView);
@@ -468,23 +489,38 @@ public class FlipViewController extends AdapterView<Adapter>{
 
     private void setupAdapterView(View view, boolean addToTop, boolean isReusedView) {
         LayoutParams params = view.getLayoutParams();
+
         if (params == null) {
-            params =
-                    new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+
+            MLog.d("the params was null");
+            //this was called for the first three view created
+            //w, h, type
+            //seems like this not working
+            params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT, 0);
         }
 
+        MLog.d("params height "  + params.height);
+
+        //this is to add the view, will be rendered no need to call the drawframe
         if (isReusedView) {
+            MLog.d("resued view");
             attachViewToParent(view, addToTop ? 0 : 1, params);
         } else {
+            MLog.d("new view");
             addViewInLayout(view, addToTop ? 0 : 1, params, true);
         }
     }
 
     private void updateVisibleView(int index) {
+//        for (int i = 0; i < bufferedViews.size(); i++) {
+//            bufferedViews.get(i).setVisibility(index == i ? VISIBLE : GONE);
+//        }
+
         for (int i = 0; i < bufferedViews.size(); i++) {
-            bufferedViews.get(i).setVisibility(index == i ? VISIBLE : GONE);
+            bufferedViews.get(i).setVisibility(VISIBLE);
         }
+
     }
 
     private void debugBufferedViews() {

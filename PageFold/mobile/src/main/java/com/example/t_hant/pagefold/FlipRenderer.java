@@ -122,6 +122,7 @@ public class FlipRenderer implements GLSurfaceView.Renderer{
             postDestroyTextures.clear();
         }
 
+        //MLog.d("ondrawframe called");
         cards.draw(this, gl);
     }
 
