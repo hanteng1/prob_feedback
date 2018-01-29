@@ -152,6 +152,8 @@ public class FlipCards {
             boolean frontChanged = frontCards.loadView(frontIndex, frontView, controller.getAnimationBitmapFormat());
             boolean backChanged = backCards.loadView(backIndex, backView, controller.getAnimationBitmapFormat());
 
+            MLog.d("front card index: " + frontCards.getIndex() + ", back card index: " + backCards.getIndex());
+
             if (MLog.ENABLE_DEBUG) {
                 MLog.d("reloading texture: %s and %s; old views: %s, %s, front changed %s, back changed %s",
                                 frontView, backView, frontCards.getView(), backCards.getView(), frontChanged,
@@ -170,6 +172,17 @@ public class FlipCards {
 
         }
     }
+
+    public void reloadTexture(ArrayList<Integer> indexes, ArrayList<View> views)
+    {
+        synchronized (this) {
+            for(int itrc = 0; itrc < foldingCards.size(); itrc++)
+            {
+                boolean changed = foldingCards.get(itrc).loadView(indexes.get(itrc), views.get(itrc), controller.getAnimationBitmapFormat());
+            }
+        }
+    }
+
 
     synchronized void resetSelection(int selection, int maxIndex) {
         UI.assertInMainThread();
@@ -499,7 +512,7 @@ public class FlipCards {
                         }
                     }
 
-                    //accumulatedAngle at most reduced to a certian degree
+                    //accumulatedAngle at most reduced to a certain degree
                     if (accumulatedAngle < 0) {
                         accumulatedAngle = Math.max(accumulatedAngle, controller.isOverFlipEnabled() ? -MAX_TIP_ANGLE : 0);
                     }

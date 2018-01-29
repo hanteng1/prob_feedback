@@ -108,6 +108,7 @@ public class FlipRenderer implements GLSurfaceView.Renderer{
     @Override
     public void onDrawFrame(GL10 gl)
     {
+        //MLog.d("ondrawframe called");
         if (cards.isVisible() && cards.isFirstDrawFinished())
             gl.glClearColor(1f, 1f, 1f, 1f);
         else

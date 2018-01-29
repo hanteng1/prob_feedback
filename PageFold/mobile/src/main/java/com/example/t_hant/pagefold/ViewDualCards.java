@@ -3,6 +3,7 @@ package com.example.t_hant.pagefold;
 import android.graphics.Bitmap;
 import android.view.View;
 
+import com.example.t_hant.pagefold.utils.MLog;
 import com.example.t_hant.pagefold.utils.TextureUtils;
 import com.example.t_hant.pagefold.utils.UI;
 
@@ -104,6 +105,9 @@ public class ViewDualCards {
             final float viewWidth = texture.getContentWidth();
             final float textureHeight = texture.getHeight();
             final float textureWidth = texture.getWidth();
+
+            MLog.d("index: " + index + ", viewheight " + viewHeight + " , viewwidth " + viewWidth  + ", textureheight " + textureHeight + " , texturewidth " + textureWidth);
+
 
             if (orientationVertical) {
                 topCard.setCardVertices(new float[]{0f, viewHeight, 0f, // top left

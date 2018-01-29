@@ -54,6 +54,7 @@ public class FlipViewController extends AdapterView<Adapter>{
             {
                 contentWidth = 0;
                 contentHeight = 0;
+                MLog.d("handler created");
                 requestLayout();
                 return true;
             }else
@@ -332,14 +333,29 @@ public class FlipViewController extends AdapterView<Adapter>{
         bufferIndex = bufferedViews.indexOf(selectedView);
         adapterIndex = position;
 
-        requestLayout();  //call the onlayout method
-
+        requestLayout();  //call the onmeaure method
 
         updateVisibleView(inFlipAnimation ? -1 : bufferIndex);
 
         cards.resetSelection(position, adapterDataCount);
 
     }
+
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        MLog.d("onmeasure called");
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        for (View child : bufferedViews) {
+            child.measure(widthMeasureSpec, heightMeasureSpec);
+        }
+
+        surfaceView.measure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+
 
     //--------------------------------------------------------------------------------------------------------------------
     // Layout
@@ -353,7 +369,7 @@ public class FlipViewController extends AdapterView<Adapter>{
         }
 
         //important section to update the view layout
-
+//
 //        for (View child : bufferedViews) {
 //
 //            child.layout(0, 0, r - l, b - t);
@@ -365,7 +381,6 @@ public class FlipViewController extends AdapterView<Adapter>{
             View child = bufferedViews.get(itrv);
             child.layout(0, itrv * (b-t) / buffersize, r-l, (itrv + 1) * (b-t) / buffersize );
         }
-
 
         //called only once at the beginning, to set the surfaceview
         if (changed || contentWidth == 0) {
@@ -385,23 +400,12 @@ public class FlipViewController extends AdapterView<Adapter>{
             if (bufferIndex < bufferedViews.size() - 1) {
                 backView = bufferedViews.get(bufferIndex + 1);
             }
-            renderer.updateTexture(adapterIndex, frontView, backView == null ? -1 : adapterIndex + 1,
-                    backView);
+            //update the cards texture, and request to render
+            renderer.updateTexture(adapterIndex, frontView, backView == null ? -1 : adapterIndex + 1, backView);
         }
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        MLog.d("onmeasure called");
 
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        for (View child : bufferedViews) {
-            child.measure(widthMeasureSpec, heightMeasureSpec);
-        }
-
-        surfaceView.measure(widthMeasureSpec, heightMeasureSpec);
-    }
 
     //--------------------------------------------------------------------------------------------------------------------
     //internal exposed properties & methods
@@ -442,7 +446,7 @@ public class FlipViewController extends AdapterView<Adapter>{
         surfaceView.setZOrderOnTop(true);
         surfaceView.setRenderer(renderer);
         surfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
-        surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        surfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);  //render when request
 
         //add a view during layout
         addViewInLayout(surfaceView, -1, new AbsListView.LayoutParams(LayoutParams.FILL_PARENT,
@@ -491,23 +495,18 @@ public class FlipViewController extends AdapterView<Adapter>{
         LayoutParams params = view.getLayoutParams();
 
         if (params == null) {
-
-            MLog.d("the params was null");
             //this was called for the first three view created
             //w, h, type
-            //seems like this not working
             params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT, 0);
         }
 
-        MLog.d("params height "  + params.height);
-
         //this is to add the view, will be rendered no need to call the drawframe
         if (isReusedView) {
-            MLog.d("resued view");
+            //MLog.d("resued view");
             attachViewToParent(view, addToTop ? 0 : 1, params);
         } else {
-            MLog.d("new view");
+            //MLog.d("new view");
             addViewInLayout(view, addToTop ? 0 : 1, params, true);
         }
     }
@@ -520,7 +519,6 @@ public class FlipViewController extends AdapterView<Adapter>{
         for (int i = 0; i < bufferedViews.size(); i++) {
             bufferedViews.get(i).setVisibility(VISIBLE);
         }
-
     }
 
     private void debugBufferedViews() {
@@ -540,6 +538,8 @@ public class FlipViewController extends AdapterView<Adapter>{
     }
 
     void flippedToView(final int indexInAdapter, boolean isPost) {
+        MLog.d("flippedtoview called");
+
         if (MLog.ENABLE_DEBUG) {
             MLog.d("flippedToView: %d, isPost %s", indexInAdapter, isPost);
         }

@@ -63,7 +63,7 @@ public class UIAdapter extends BaseAdapter {
         {
             //if not exist, create a new view
             layout = inflater.inflate(R.layout.basic, null);
-            MLog.d("created new view from adapter: %d", position);
+            MLog.d("created new view from adapter at position: %d", position);
         }
 
         final UIData.Data data = uiData.get(position % uiData.size());
