@@ -79,6 +79,10 @@ public class Card {
 
     private int axis = AXIS_TOP;
 
+    private int translateY = 0;
+    private float inFoldingTranslateY = 0;
+
+
     private boolean orientationVertical = true;
 
     private boolean dirty = false;
@@ -119,6 +123,11 @@ public class Card {
 
     public void setAxis(int axis) {
         this.axis = axis;
+    }
+
+    public void setTranslateY(int translateY)
+    {
+        this.translateY = translateY;
     }
 
     public void setOrientation(boolean orientationVertical) {
@@ -162,28 +171,34 @@ public class Card {
         //draw folded page
         gl.glPushMatrix();
 
+
+
         if (orientationVertical) {
 
             float foldingDepth;
-            if (angle > 0) {
+            if (angle >= 0) {
 
                 foldingDepth = (cardVertices[Y_00] - cardVertices[Y_01]) * (float)sin(d2r(angle));
+                inFoldingTranslateY = (cardVertices[Y_00] - cardVertices[Y_01]) * (1.0f - (float)cos(d2r(angle)));
 
-                if (axis == AXIS_TOP) {
-                    gl.glTranslatef(0, 0, -foldingDepth);
-                    gl.glTranslatef(0, cardVertices[Y_00], 0f); //translate the coordinates for rotation
-                    gl.glRotatef(-angle, 1f, 0f, 0f);
-                    //gl.glTranslatef(0, -cardVertices[Y_00], 0f);
-                    gl.glTranslatef(0, -cardVertices[Y_00], 0f);
+//                if (axis == AXIS_TOP) {
+//                    //this is bottom card
+//                    //gl.glTranslatef(0, translateY + inFoldingTranslateY, -foldingDepth);
+//                    //gl.glTranslatef(0, cardVertices[Y_00], 0f); //translate the coordinates for rotation
+//                    //gl.glRotatef(-angle, 1f, 0f, 0f);
+//                    //gl.glTranslatef(0, -cardVertices[Y_00], 0f);
+//
+//                } else {
+//                    //this is top card
+//                   // gl.glTranslatef(0, translateY + inFoldingTranslateY, -foldingDepth);
+//                    //gl.glTranslatef(0, cardVertices[Y_11], 0f);
+//                    //gl.glRotatef(angle, 1f, 0f, 0f);
+//                    //gl.glTranslatef(0, -cardVertices[Y_11], 0f);
+//
+//                }
 
-                } else {
-                    gl.glTranslatef(0, 0, -foldingDepth);
-                    gl.glTranslatef(0, cardVertices[Y_11], 0f);
-                    gl.glRotatef(angle, 1f, 0f, 0f);
-                    //gl.glTranslatef(0, -cardVertices[Y_11], 0f);
-                    gl.glTranslatef(0, -cardVertices[Y_11], 0f);
+                gl.glTranslatef(0, translateY, 0);
 
-                }
             }
         } else {
             if (angle > 0) {

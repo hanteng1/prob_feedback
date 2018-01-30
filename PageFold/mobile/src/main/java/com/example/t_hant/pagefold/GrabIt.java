@@ -25,8 +25,6 @@ public class GrabIt {
 
             //canvas.drawColor(Color.RED, PorterDuff.Mode.DARKEN); //NOTES: debug option
 
-            MLog.d("create bitmap %dx%d, format %s", width, height, config);
-
             if (MLog.ENABLE_DEBUG) {
                 MLog.d("create bitmap %dx%d, format %s", width, height, config);
             }

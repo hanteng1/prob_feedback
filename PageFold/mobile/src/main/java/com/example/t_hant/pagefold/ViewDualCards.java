@@ -12,6 +12,9 @@ import java.lang.ref.WeakReference;
 import javax.microedition.khronos.opengles.GL10;
 
 import static com.example.t_hant.pagefold.FlipRenderer.checkError;
+import static com.example.t_hant.pagefold.utils.TextureUtils.d2r;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 /**
  * Created by t_hant on 1/21/2018.
@@ -28,6 +31,24 @@ public class ViewDualCards {
     private Card bottomCard = new Card();
 
     private boolean orientationVertical = true;
+
+    private int translateY;
+
+    public static final int X_00 = 0;
+    public static final int Y_00 = 1;
+    public static final int Z_00 = 2;
+
+    public static final int X_01 = 3;
+    public static final int Y_01 = 4;
+    public static final int Z_01 = 5;
+
+    public static final int X_11 = 6;
+    public static final int Y_11 = 7;
+    public static final int Z_11 = 8;
+
+    public static final int X_10 = 9;
+    public static final int Y_10 = 10;
+    public static final int Z_10 = 11;
 
     public ViewDualCards(boolean orientationVertical) {
         topCard.setOrientation(orientationVertical);
@@ -90,6 +111,13 @@ public class ViewDualCards {
         return bottomCard;
     }
 
+    public void setTranslateY(int translateY)
+    {
+        this.translateY = translateY;
+        getTopCard().setTranslateY(translateY);
+        getBottomCard().setTranslateY(translateY);
+    }
+
     public synchronized void buildTexture(FlipRenderer renderer, GL10 gl) {
         if (screenshot != null) {
             if (texture != null) {
@@ -106,8 +134,7 @@ public class ViewDualCards {
             final float textureHeight = texture.getHeight();
             final float textureWidth = texture.getWidth();
 
-            MLog.d("index: " + index + ", viewheight " + viewHeight + " , viewwidth " + viewWidth  + ", textureheight " + textureHeight + " , texturewidth " + textureWidth);
-
+            //MLog.d("index: " + index + ", viewheight " + viewHeight + " , viewwidth " + viewWidth  + ", textureheight " + textureHeight + " , texturewidth " + textureWidth);
 
             if (orientationVertical) {
                 topCard.setCardVertices(new float[]{0f, viewHeight, 0f, // top left
@@ -135,6 +162,9 @@ public class ViewDualCards {
                         viewHeight / textureHeight,
                         viewWidth / textureWidth,
                         viewHeight / 2f / textureHeight});
+
+
+
             } else {
                 topCard.setCardVertices(new float[]{0f, viewHeight, 0f, // top left
                         0f, 0f, 0f, // bottom left
@@ -166,6 +196,39 @@ public class ViewDualCards {
             checkError(gl);
         }
     }
+
+    //update the vertices based on display angle
+    public synchronized void calculateVertices(float angle)
+    {
+        //assume vertical rotation
+
+        if(texture == null)
+        {
+            return;
+        }
+
+        final float viewHeight = texture.getContentHeight();
+        final float viewWidth = texture.getContentWidth();
+
+        float foldingDepth = (viewHeight / 2.0f) * (float)sin(d2r(angle));
+        float foldingShrink = (viewHeight / 2.0f) * (1.0f - (float)cos(d2r(angle)));
+
+        if (orientationVertical) {
+            topCard.setCardVertices(new float[]{0f, viewHeight - foldingShrink, 0f, // top left
+                    0f, viewHeight / 2.0f, -foldingDepth, // bottom left
+                    viewWidth, viewHeight / 2.0f, -foldingDepth, // bottom right
+                    viewWidth, viewHeight - foldingShrink, 0f // top right
+            });
+
+            bottomCard.setCardVertices(new float[]{0f, viewHeight / 2f, -foldingDepth, // top left
+                    0f, foldingShrink, 0f, // bottom left
+                    viewWidth, foldingShrink, 0f, // bottom right
+                    viewWidth, viewHeight / 2f, -foldingDepth // top right
+            });
+
+        }
+    }
+
 
     public synchronized void abandonTexture() {
         texture = null;
