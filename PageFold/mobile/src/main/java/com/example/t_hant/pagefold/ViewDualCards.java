@@ -32,7 +32,9 @@ public class ViewDualCards {
 
     private boolean orientationVertical = true;
 
-    private int translateY;
+    private float translateY;
+
+    private float shrinkedLength = 0;
 
     public static final int X_00 = 0;
     public static final int Y_00 = 1;
@@ -111,11 +113,16 @@ public class ViewDualCards {
         return bottomCard;
     }
 
-    public void setTranslateY(int translateY)
+    public void setTranslateY(float translateY)
     {
         this.translateY = translateY;
         getTopCard().setTranslateY(translateY);
         getBottomCard().setTranslateY(translateY);
+    }
+
+    public float getShrinkedLength()
+    {
+        return shrinkedLength;
     }
 
     public synchronized void buildTexture(FlipRenderer renderer, GL10 gl) {
@@ -225,6 +232,8 @@ public class ViewDualCards {
                     viewWidth, foldingShrink, 0f, // bottom right
                     viewWidth, viewHeight / 2f, -foldingDepth // top right
             });
+
+            shrinkedLength = 2 * foldingShrink;
 
         }
     }

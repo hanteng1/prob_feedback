@@ -39,7 +39,7 @@ public class FlipCards {
     //folded cards
     //should be an list storing all cards
     private ArrayList<ViewDualCards> foldingCards;
-    private int numCards = 3;
+    private int numCards = 5;
 
     private float accumulatedAngle = 0f;
     private boolean forward = true;
@@ -594,13 +594,20 @@ public class FlipCards {
 //                    frontCards.calculateVertices(getDisplayAngle());
 //                    backCards.calculateVertices(getDisplayAngle());
 
+                    float accumulatedTranslateY = 0;
                     for(int itrc = 0; itrc < foldingCards.size(); itrc++)
                     {
-                        int translateY = 0;
+                        float translateY = 0;
                         ViewDualCards cards = foldingCards.get(itrc);
                         if(itrc == 0)
                         {
                             translateY = controller.getContentHeight() - cards.getView().getHeight();
+                            accumulatedTranslateY += translateY;
+                        }else
+                        {
+                            accumulatedTranslateY += (-cards.getView().getHeight());
+                            accumulatedTranslateY += foldingCards.get(itrc - 1).getShrinkedLength();
+                            translateY = accumulatedTranslateY;
                         }
 
                         cards.setTranslateY(translateY);

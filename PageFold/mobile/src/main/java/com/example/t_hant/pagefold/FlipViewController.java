@@ -91,7 +91,7 @@ public class FlipViewController extends AdapterView<Adapter>{
     private int adapterIndex = -1;
     private final int sideBufferSize = 1;
 
-    private final int bufferSize = 5;
+    private final int bufferSize = 5;  //trying to keep the same with numcards in flipcards
 
     private float touchSlop;
 

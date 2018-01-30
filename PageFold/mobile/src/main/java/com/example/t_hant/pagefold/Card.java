@@ -79,7 +79,7 @@ public class Card {
 
     private int axis = AXIS_TOP;
 
-    private int translateY = 0;
+    private float translateY = 0;
     private float inFoldingTranslateY = 0;
 
 
@@ -125,7 +125,7 @@ public class Card {
         this.axis = axis;
     }
 
-    public void setTranslateY(int translateY)
+    public void setTranslateY(float translateY)
     {
         this.translateY = translateY;
     }
