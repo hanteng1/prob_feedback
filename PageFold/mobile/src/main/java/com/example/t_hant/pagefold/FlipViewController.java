@@ -24,6 +24,7 @@ import com.example.t_hant.pagefold.utils.MLog;
 
 import junit.framework.Assert;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -89,6 +90,8 @@ public class FlipViewController extends AdapterView<Adapter>{
     private int bufferIndex = -1;
     private int adapterIndex = -1;
     private final int sideBufferSize = 1;
+
+    private final int bufferSize = 5;
 
     private float touchSlop;
 
@@ -300,6 +303,7 @@ public class FlipViewController extends AdapterView<Adapter>{
     @Override
     public void setSelection(int position)
     {
+        //for now, position always == 0
         //this was first called
         MLog.d("setselection called");
 
@@ -312,21 +316,30 @@ public class FlipViewController extends AdapterView<Adapter>{
 
         releaseViews();
 
-        //saving a current view
+//        //saving a current view
         View selectedView = viewFromAdapter(position, true);
         bufferedViews.add(selectedView);
+//
+//        //buffersize is 1, set at the beginning
+//        //saving a previous, and a next view
+//        for (int i = 1; i <= sideBufferSize; i++) {
+//            int previous = position - i;
+//            int next = position + i;
+//
+//            if (previous >= 0) {
+//                bufferedViews.addFirst(viewFromAdapter(previous, false));
+//            }
+//            if (next < adapterDataCount) {
+//                bufferedViews.addLast(viewFromAdapter(next, true));
+//            }
+//        }
 
-        //buffersize is 1, set at the beginning
-        //saving a previous, and a next view
-        for (int i = 1; i <= sideBufferSize; i++) {
-            int previous = position - i;
-            int next = position + i;
-
-            if (previous >= 0) {
-                bufferedViews.addFirst(viewFromAdapter(previous, false));
-            }
-            if (next < adapterDataCount) {
-                bufferedViews.addLast(viewFromAdapter(next, true));
+        //saving buffers
+        for(int i = 1; i < bufferSize; i++)
+        {
+            if(i < adapterDataCount)
+            {
+                bufferedViews.add(viewFromAdapter(i, true));  //true means add to top
             }
         }
 
@@ -394,17 +407,26 @@ public class FlipViewController extends AdapterView<Adapter>{
             }
         }
 
+
         if (bufferedViews.size() >= 1) {
-            View frontView = bufferedViews.get(bufferIndex);  //get the current view
-            View backView = null;
-            if (bufferIndex < bufferedViews.size() - 1) {
-                backView = bufferedViews.get(bufferIndex + 1);
+//            View frontView = bufferedViews.get(bufferIndex);  //get the current view
+//            View backView = null;
+//            if (bufferIndex < bufferedViews.size() - 1) {
+//                backView = bufferedViews.get(bufferIndex + 1);
+//            }
+//            //update the cards texture, and request to render
+//            renderer.updateTexture(adapterIndex, frontView, backView == null ? -1 : adapterIndex + 1, backView);
+
+            //try the new update
+            ArrayList<View> buffers = new ArrayList<View>();
+            for(int itrb = 0; itrb < bufferedViews.size(); itrb++)
+            {
+                buffers.add(bufferedViews.get(itrb));
             }
-            //update the cards texture, and request to render
-            renderer.updateTexture(adapterIndex, frontView, backView == null ? -1 : adapterIndex + 1, backView);
+
+            renderer.updateTexture(buffers);
         }
     }
-
 
 
     //--------------------------------------------------------------------------------------------------------------------

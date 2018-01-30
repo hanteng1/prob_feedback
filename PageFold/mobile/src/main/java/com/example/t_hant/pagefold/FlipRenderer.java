@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.t_hant.pagefold.utils.MLog;
 import com.example.t_hant.pagefold.utils.TextureUtils;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -139,6 +140,16 @@ public class FlipRenderer implements GLSurfaceView.Renderer{
             flipViewController.getSurfaceView().requestRender();
         }
     }
+
+    public void updateTexture(ArrayList<View> views)
+    {
+        if(created)
+        {
+            cards.reloadTexture(views);
+            flipViewController.getSurfaceView().requestRender();
+        }
+    }
+
 
     public static void checkError(GL10 gl) {
         if (MLog.ENABLE_DEBUG) {
